@@ -13,24 +13,12 @@ class BPNetwork(object):
 
   def learn(self, example, result):
     res = self._propagate_values(example)
-    maximum = res[0]
-    index = 0
-    for i, value in enumerate(res):
-      if value > maximum:
-        maximum = value
-        index = i
     self._back_propagate_values(result)
-    return index
+    return res
 
   def classify(self, example):
     res = self._propagate_values(example)
-    maximum = res[0]
-    index = 0
-    for i, value in enumerate(res):
-      if value > maximum:
-        maximum = value
-        index = i
-    return index
+    return res
 
   def init_network(self):
     self.neurons = [[1.0 for i in range(0, layer)] for layer in self.layer_nums]
